@@ -1,0 +1,103 @@
+:root {
+  --colorPrincipal: #54751A;
+  --fondo-card: #F5F5F5;
+  --texto: #222020;
+  --texto-claro: #333333;
+  --colorSecundario: #A3C76D;
+  --colorError: #D7263D;
+  --colorBlanco: #FFFFFF;
+
+  --titulo: "Montserrat", sans-serif;
+  --cuerpo: "Lato", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--cuerpo);
+  background-color: var(--fondo-card);
+  color: var(--texto);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.error-box {
+  background: var(--colorBlanco);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 60px 40px;
+  max-width: 480px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.error-box h1 {
+  font-size: 100px;
+  font-family: var(--titulo);
+  color: var(--colorError);
+  margin: 0;
+  letter-spacing: 4px;
+}
+
+.error-box h2 {
+  font-size: 22px;
+  color: var(--texto-claro);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.error-box p {
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-principal,
+.btn-secundario {
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 12px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-principal {
+  background-color: var(--colorPrincipal);
+  color: var(--colorBlanco);
+}
+
+.btn-principal:hover {
+  background-color: #3e5d12;
+}
+
+.btn-secundario {
+  border: 2px solid var(--colorPrincipal);
+  color: var(--colorPrincipal);
+  background-color: transparent;
+}
+
+.btn-secundario:hover {
+  background-color: var(--colorSecundario);
+  color: var(--colorBlanco);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

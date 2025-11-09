@@ -1,0 +1,132 @@
+:root {
+  --colorPrincipal: #54751A;
+  --fondo-card: #F5F5F5;
+  --texto: #222020;
+  --texto-claro: #333333;
+
+  --titulo: "Montserrat", sans-serif;
+  --cuerpo: "Lato", sans-serif;
+}
+
+/* === SECCIÓN FAVORITOS === */
+#seccion-favoritos {
+	background-color: var(--fondo-card);
+	margin: 30px 0;
+	padding: 20px;
+}
+
+#seccion-favoritos h2 {
+	text-align: center;
+	font-family: var(--titulo);
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 25px;
+	color: var(--colorPrincipal);
+	font-size: 2rem;
+}
+
+/* === CONTENEDOR DE TARJETAS === */
+.favoritos-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+	margin: 0 20px;
+	padding-bottom: 20px;
+}
+
+/* === TARJETA INDIVIDUAL === */
+.favorito-card {
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	padding: 15px;
+	background-color: #fff;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.2s, box-shadow 0.2s;
+	min-height: 350px;
+}
+
+.favorito-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* === FECHA === */
+.favorito-card .card-fecha {
+	font-size: 0.9rem;
+	color: var(--texto-claro);
+	background-color: rgba(84, 117, 26, 0.1);
+	border-radius: 50px;
+	padding: 5px 12px;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+
+/* === IMAGEN DEL PRODUCTO (CENTRADA) === */
+.favorito-card img {
+	display: block;
+/*	width: 80%;*/
+/*	height: 180px;*/
+	object-fit: cover;
+	border-radius: 10px;
+	margin: 0 auto 15px auto;
+	border: 1px solid #ddd;
+}
+
+/* === TEXTO DE USUARIO Y PRODUCTO === */
+.favorito-card p {
+	margin: 6px 0;
+	font-size: 0.9rem;
+	color: var(--texto);
+	font-family: var(--cuerpo);
+}
+
+.favorito-card strong {
+	color: var(--texto-claro);
+	font-weight: 600;
+}
+
+/* === BOTÓN "BORRAR DE FAVORITO" === */
+.favorito-card a {
+	display: inline-block;
+	margin-top: 15px;
+	background-color: #c0392b;
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 6px;
+	text-decoration: none;
+	font-size: 0.9rem;
+	font-weight: 600;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.favorito-card a:hover {
+	background-color: #e74c3c;
+	transform: scale(1.05);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+	.favoritos-container {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+}
+
+@media (max-width: 600px) {
+	#seccion-favoritos {
+		padding: 15px;
+	}
+
+	.favorito-card {
+		min-height: auto;
+		padding: 10px;
+	}
+
+	.favorito-card img {
+		width: 90%;
+		height: 150px;
+	}
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/home.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+
+	<main>
+		<section id="seccion-productos">
+		    <h1 class="card-title"> Productos</h1>
+			
+			<!-- Mensajes flash -->
+			<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+			<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+			
+		    <div class="cards-container">
+		        <div class="card" th:each="elem : ${listaProductos}">
+		            <div class="card-header">
+		                <span class="card-id" th:text="${elem.id}" hidden></span>
+		                <span class="card-categoria" th:text="${elem.categoria.nombre}"></span>
+		            </div>
+
+		            <img th:src="@{'imagenes/productos/' + ${elem.img}}" th:alt="${elem.nombre}" class="card-img">
+
+		            <div class="card-body">
+		                <h3 th:text="${elem.nombre}">Nombre Producto</h3>
+		                <p><strong>Descripción:</strong> <span th:text="${elem.descripcion}"></span></p>
+		                <p><strong>Precio:</strong> <span th:text="${elem.precio}"></span></p>
+		                <p><strong>Localidad:</strong> <span th:text="${elem.localidad.nombre}"></span></p>
+		            </div>
+
+		            <div class="card-footer">
+		                <!-- Formulario POST para agregar a favoritos -->
+		                <form th:action="@{/InsertarFavorito}" method="post">
+		                    <input type="hidden" name="productoId" th:value="${elem.id}" />
+		                    <button type="submit" class="btn-favorito"> ❤️ </button>
+		                </form>
+		            </div>
+		        </div>
+		    </div>
+
+		</section>
+
+		         
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/admin.css">
+
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+
+	<main>
+		<section id="seccion-productos">
+			<h1 class="card-title"> Insertar un Categoria nueva</h1>
+			<form th:action="@{/InsertarCategoria}" method="post" class="contenedor-flex" th:object="${obj_categoria}"
+				enctype="multipart/form-data">
+				<section class="formulario-producto">
+					<div class="form-row">
+						<label>Id:</label>
+						<input type="text" th:field="*{id}" readonly>
+					</div>
+					<div class="form-row">
+						<label>Nombre:</label>
+						<input type="text" th:field="*{nombre}">
+					</div>
+
+					<input type="submit" value="Guardar">
+				</section>
+			</form>
+		</section>
+
+
+		<section id="seccion tablas">
+			<h1>Categorias</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+
+
+						<th>Editar</th>
+						<th>Borrar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${listaCategorias}">
+
+						<td th:text="${elem.id}" aria-readonly="false"> 1 </td>
+						<td th:text="${elem.nombre}"> Patata </td>
+
+						<td id="btnMB">
+							<a th:href="@{/ModificarProducto(id=${elem.id})}">
+								<img src="imagenes/iconos/ico_editar.png">
+							</a>
+						</td>
+						<td class="btnMB">
+							<a th:href="@{/BorrarProducto(id=${elem.id})}">
+								<img src="imagenes/iconos/ico_borrar.png">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+		</section>
+
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/home.css">
+	<link rel="stylesheet" th:href="@{/styles/login.css}">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<div th:include="plantillas.html::menu"> </div>
+
+	<main>
+		<section>
+		    <form th:action="@{/Login}" method="post" th:object="${obj_usuario}">
+		        <div class="input-group">
+		            <label>Nombre</label>
+		            <input type="text" th:field="*{name}" required>
+		        </div>
+
+		        <div class="input-group">
+		            <label>Contraseña</label>
+		            <input type="password" th:field="*{pass}" required>
+		        </div>
+
+		        <input type="submit" value="Iniciar Sesión">
+		    </form>
+		</section>
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

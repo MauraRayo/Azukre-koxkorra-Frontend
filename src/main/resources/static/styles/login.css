@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+	--colorPrincipal: #54751A;
+	--fondo-card: #F5F5F5;
+	--texto: #222020;
+
+
+	/* Tipografía y forma */
+	--titulo: "Montserrat", sans-serif;
+	--cuerpo: "Lato", sans-serif;
+}
+
+/* Reset básico */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+/* Sección centrada */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(120deg, var(--fondo-card), #cfdef3);
+    font-family: var(--cuerpo);
+}
+
+/* Formulario */
+form {
+    background-color: #fff;
+    padding: 45px 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Contenedor de input */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column; /* Etiqueta arriba, input debajo */
+}
+
+/* Labels fijos */
+.input-group label {
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+/* Inputs */
+.input-group input {
+    width: 100%;
+    padding: 14px 14px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background: none;
+    transition: 0.3s ease all;
+}
+
+
+/* Botón de login con efecto hover */
+form input[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    color: var(--fondo-card);
+    background-color: var(--colorPrincipal);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+form input[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+    form {
+        padding: 30px 20px;
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/crearComentario.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+	<main>
+		<h1>Crear un nuevo comentario</h1>
+
+		<form th:action="@{/InsertarComentario}" method="post" class="contenedor-flex" th:object="${obj_comentario}"
+			enctype="multipart/form-data">
+			<section class="formulario-comentarioN">
+				<div class="form-row">
+					<label>Fecha:</label>
+					<input type="date" th:field="*{fecha}">
+				</div>
+
+				<div class="form-row">
+					<label>Texto:</label>
+					<input type="text" th:field="*{texto}" placeholder="Escribe tu comentario">
+				</div>
+
+				<div class="form-row">
+					<label>Valoración:</label>
+					<input type="number" th:field="*{valoracion}" min="1" max="5">
+				</div>
+
+				<div class="form-row">
+					<label>Productos:</label>
+					<select th:field="*{producto.id}">
+						<option th:each="elem : ${listaProductos}" th:value="${elem.id}" th:text="${elem.nombre}">
+						</option>
+					</select>
+				</div>
+
+				<div class="form-row submit-row">
+					<input type="submit" value="Guardar">
+				</div>
+			</section>
+		</form>
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

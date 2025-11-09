@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/favorito.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+	<main>
+		<section id="seccion-favoritos">
+			<h2>Productos Guardados</h2>
+			<div class="favoritos-container">
+				<div class="favorito-card" th:each="elem : ${listaFavoritos}">
+					<h3 th:text="${elem.producto.nombre}"></h3>
+					<img th:src="@{'imagenes/productos/' + ${elem.producto.img}}" class="card-img">
+					<a th:href="@{'/FavoritoBorrar/' + ${elem.id}}"> X​​ </a>
+				</div>
+			</div>
+
+		</section>
+
+
+
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

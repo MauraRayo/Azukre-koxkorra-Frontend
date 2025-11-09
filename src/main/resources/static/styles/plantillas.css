@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --colorPrincipal: #54751A;
+    --fondo-card: #F5F5F5;
+    --texto: #222020;
+	--texto-claro: #333333;
+;
+
+    /* Tipografía y forma */
+    --titulo: "Montserrat", sans-serif;
+    --cuerpo: "Lato", sans-serif;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: var(--cuerpo);
+}
+
+/* ======== CABECERA ======== */
+header {
+    display: flex;
+    justify-content: space-between; /* izquierda y derecha */
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 2px solid var(--colorPrincipal);
+}
+
+#cabecera_izq {
+    display: flex;
+    align-items: center; /* centra verticalmente */
+    gap: 10px;           /* espacio entre h1 y logo */
+}
+
+#tituloheader {
+    margin: 0;
+    color: var(--colorPrincipal);
+    font-family: var(--titulo);
+    font-size: 28px;
+}
+
+#tituloheader a{
+    color: var(--colorPrincipal);
+	text-decoration: none;
+ 
+}
+
+#cabecera_izq img {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* Cabecera derecha */
+#cabecera_der a {
+    text-decoration: none;
+    font-family: var(--texto);
+    color: var(--texto-claro);
+/*    font-weight: bold;*/
+    font-size: 16px;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+#cabecera_der a:hover {
+    color: var(--colorPrincipal);
+    border-bottom: 2px dotted var(--colorPrincipal);
+}
+
+/* Usuario logueado */
+.usuario-logueado {
+    font-family: var(--titulo);
+	color: var(--colorPrincipal);
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ======== MENÚ ======== */
+nav {
+    padding: 10px 30px;
+	border-bottom: 2px solid var(--colorPrincipal);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    padding: 5px 10px;
+}
+
+nav ul li a {
+    color: var(--texto);
+    font-family: var(--titulo);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--colorPrincipal);
+    border-bottom: 2px dotted var(--colorPrincipal);
+}
+
+/* ======== FOOTER ======== */
+footer {
+    display: flex;
+    justify-content: space-evenly; /* izq, cen, der */
+    align-items: flex-start;
+    padding: 20px 40px;
+    border-top: 2px solid var(--colorPrincipal);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Footer izquierda */
+#footer_izq {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#footer_izq img {
+    width: 35px;
+    height: 35px;
+}
+
+#footer_izq p {
+    color: var(--texto);
+    font-family: var(--cuerpo);
+    font-size: 14px;
+    max-width: 250px;
+}
+
+/* Footer centro */
+#footer_cen {
+    text-align: left;
+}
+
+#footer_cen ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#footer_cen ul li {
+    margin: 8px 0;
+}
+
+#footer_cen ul li a {
+    text-decoration: none;
+    color: var(--texto-claro);
+    font-family: var(--cuerpo);
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+#footer_cen ul li a:hover {
+    color: var(--colorPrincipal);
+    border-bottom: 3px dotted var(--colorPrincipal);
+}
+
+/* Footer derecha */
+#footer_der {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#footer_der img {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+#footer_der img:hover {
+    transform: scale(1.1);
+}

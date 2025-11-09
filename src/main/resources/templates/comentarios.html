@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/comentario.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+	<main>
+		<section id="seccion-comentarios">
+			<h2>Mis Comentarios</h2>
+
+			<div class="btn-comentario">
+				<a th:href="@{/CrearComentario}">Crear un comentario</a>
+			</div>
+
+			<div class="comentarios-container">
+				<div class="comentario-card" th:each="elem : ${listaComentarios}">
+					<span class="card-fecha" th:text="${elem.fecha}"></span>
+
+					<img th:src="@{'imagenes/productos/' + ${elem.producto.img}}" class="card-img">
+					<span th:text="${elem.texto}"></span>
+					
+					<p><strong>Valoracion:</strong> <span th:text="${elem.valoracion}"></span></p>
+					
+					
+
+					<div>
+						<a th:href="@{'/EditarComentario/' + ${elem.id}}">Edita</a>
+						<a th:href="@{'/BorrarComentario/' + ${elem.id}}">Borrar</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

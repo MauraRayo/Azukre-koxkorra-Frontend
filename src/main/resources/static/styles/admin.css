@@ -1,0 +1,182 @@
+:root {
+  --colorPrincipal: #54751A;
+  --fondo-card: #F5F5F5;
+  --texto: #222020;
+  --texto-claro: #333333;
+
+  --titulo: "Montserrat", sans-serif;
+  --cuerpo: "Lato", sans-serif;
+}
+
+/* === ESTILOS GENERALES === */
+body {
+  font-family: var(--cuerpo);
+  background-color: #fafafa;
+  color: var(--texto);
+  margin: 0;
+  padding: 0;
+}
+
+main {
+/*  max-width: 1200px;*/
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* === TÍTULOS === */
+#seccion-productos h1,
+#seccion-tablas h2 {
+  font-family: var(--titulo);
+  text-align: center;
+  color: var(--colorPrincipal);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* === FORMULARIO === */
+/* === FORMULARIO === */
+.contenedor-flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.formulario-producto {
+  width: 100%;
+/*  max-width: 900px;*/
+  background-color: var(--fondo-card);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  /* GRID DE 3 COLUMNAS */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: var(--texto-claro);
+  margin-bottom: 0.4rem;
+  font-family: var(--titulo);
+  font-size: 0.9rem;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row select,
+.form-row input[type="file"] {
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: var(--cuerpo);
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-color: var(--colorPrincipal);
+  box-shadow: 0 0 0 2px rgba(84, 117, 26, 0.2);
+  outline: none;
+}
+
+/* El botón ocupa toda la fila */
+input[type="submit"] {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 1rem;
+  background-color: var(--colorPrincipal);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #6a8e2b;
+}
+
+/* === TABLA === */
+#seccion\ tablas {
+  margin-top: 3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+thead {
+  background-color: var(--colorPrincipal);
+  color: #fff;
+  font-family: var(--titulo);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+th {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--fondo-card);
+}
+
+tbody tr:hover {
+  background-color: rgba(84, 117, 26, 0.1);
+}
+
+/* === IMÁGENES === */
+.card-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* === ICONOS DE ACCIÓN === */
+#btnMB img,
+.btnMB img {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+#btnMB img:hover,
+.btnMB img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.1);
+}
+
+

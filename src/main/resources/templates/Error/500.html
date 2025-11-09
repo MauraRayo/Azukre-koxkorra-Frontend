@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 500 - Error Interno del Servidor</title>
+    <link rel="stylesheet" th:href="@{/styles/error.css}" href="/styles/error500.css">
+</head>
+<body>
+    <main class="error-container">
+        <section class="error-box">
+            <h1>500</h1>
+            <h2>¡Vaya! Algo salió mal en el servidor.</h2>
+            <p>Estamos trabajando para solucionarlo. Por favor, intenta de nuevo más tarde.</p>
+
+            <div class="btn-container">
+                <a th:href="@{/}" class="btn-principal">Volver al inicio</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

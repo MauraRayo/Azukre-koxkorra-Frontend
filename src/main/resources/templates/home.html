@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/home.css">
+
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+
+	<main>
+		<section class="contenedor-imagen">
+			<img src="imagenes/fondo.png" alt="Taza de café">
+			<div class="overlay"></div>
+			<div class="texto-superpuesto">
+				<h2>Bienvenidos a <strong>Azukre koxkorra</strong>! <br>
+					Nosotros servimos el café <br>
+					mas rico de la ciudad </h2>
+				<a th:href="@{/MenuProductos}" class="btn">Comprar aquí</a>
+			</div>
+		</section>
+
+		<!-- **************************** PRODUCTOS ************************************-->
+		<section id="seccion-productos">
+			<h2 class="card-title">Nuevos Productos</h2>
+			<div class="cards-container">
+				<div class="card" th:each="elem : ${listaProductos}">
+					<div class="card-header">
+						<span class="card-id" th:text="${elem.id}" hidden></span>
+						<span class="card-categoria" th:text="${elem.categoria.nombre}"></span>
+					</div>
+
+					<img th:src="@{'imagenes/productos/' + ${elem.img}}" th:alt="${elem.nombre}" class="card-img">
+
+					<div class="card-body">
+						<h3 th:text="${elem.nombre}">Nombre Producto</h3>
+						<p><strong>Descripción:</strong> <span th:text="${elem.descripcion}"></span></p>
+						<p><strong>Precio:</strong> <span th:text="${elem.precio } + €"></span></p>
+						<p><strong>Localidad:</strong> <span th:text="${elem.localidad.nombre}"></span></p>
+					</div>
+				</div>
+			</div>
+			<div>
+				<a th:href="@{/MenuProductos}" class="btn verMas"> Ver mas</a>
+			</div>
+		</section>
+		<!--  ***************************** FIN DE PRODUCTOS *********************************************  -->
+
+
+		<!-- ********************************** COMENTARIOS **********************************************-->
+		<section id="seccion-comentarios">
+			<h2>Comentarios de nuestros usuarios</h2>
+			<div class="carrusel">
+				<div class="carrusel-contenedor">
+					<div class="comentario-card" th:each="elem : ${listaComentarios}">
+						<div class="card-top">
+							<span class="card-categoria" th:text="${elem.fecha}"></span>
+							<div class="estrellas">
+								<span th:each="i : ${#numbers.sequence(1,5)}"
+									th:classappend="${i <= elem.valoracion} ? 'estrella llena' : 'estrella'">★</span>
+							</div>
+						</div>
+						<p><strong>Usuario:</strong> <span th:text="${elem.usuario.name}"></span></p>
+						<p><strong>Producto:</strong> <span th:text="${elem.producto.nombre}"></span></p>
+						<h3 th:text="${elem.texto}"></h3>
+					</div>
+				</div>
+			</div>
+
+			<!-- Botones de control -->
+			<button class="btn-carrusel prev">❮</button>
+			<button class="btn-carrusel next">❯</button>
+		</section>
+
+		<!--  ***************************** FIN DE COMENTARIOS ********************************************  -->
+
+
+
+		<section class="servicios">
+			<h2>Nuestros Servicios</h2>
+			<div class="servicios-container">
+				<div class="servicio">
+					<img src="/imagenes/servicios/suscripcion_nicaragua.png" alt="Suscripción Café Nicaragüense">
+					<h3>Suscripción Mensual</h3>
+					<p>Recibe café nicaragüense fresco cada mes en tu hogar. Personaliza tu selección según tu gusto y
+						tipo de tostado.</p>
+				</div>
+				<div class="servicio">
+					<img src="/imagenes/servicios/cafe_gourmet.png" alt="Café Gourmet Nicaragüense">
+					<h3>Café Gourmet Nicaragüense</h3>
+					<p>Selección de granos nicaragüenses de alta calidad, con tueste artesanal para resaltar sabores
+						únicos y aroma excepcional.</p>
+				</div>
+				<div class="servicio">
+					<img src="/imagenes/servicios/envios_rapidos.png" alt="Envíos Rápidos">
+					<h3>Envíos Rápidos</h3>
+					<p>Recibe tu café favorito en tiempo récord con nuestro servicio de entregas rápidas y seguras a
+						nivel nacional.</p>
+				</div>
+				<div class="servicio">
+					<img src="/imagenes/servicios/pack_regalo.png" alt="Packs de Café Nicaragüense">
+					<h3>Packs y Regalos Especiales</h3>
+					<p>Selecciones de café nicaragüense en packs especiales, perfectos para regalar y compartir la
+						riqueza de nuestro país.</p>
+				</div>
+			</div>
+		</section>
+
+
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+	<script th:src="@{/script/carrusel.js}"></script>
+
+</body>
+
+</html>

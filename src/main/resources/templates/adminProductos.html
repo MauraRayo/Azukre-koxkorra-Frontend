@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/admin.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+		<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+		<!-- Mostrar menú admin solo si es admin -->
+		<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+		
+	<main>
+		<section id="seccion-productos">
+			<h1 class="card-title"> Insertar un producto nuevo</h1>
+			<form th:action="@{/InsertarProducto}" method="post" class="contenedor-flex" th:object="${obj_producto}"
+				enctype="multipart/form-data">
+				<section class="formulario-producto">
+					<div class="form-row">
+						<label>Nombre:</label>
+						<input type="text" th:field="*{nombre}">
+					</div>
+					<div class="form-row">
+						<label>Descripcion:</label>
+						<input type="text" th:field="*{descripcion}">
+					</div>
+
+					<div class="form-row">
+						<label>img:</label>
+						<input type="file" name="foto2">
+					</div>
+
+
+					<div class="form-row">
+						<label>Precio:</label>
+						<input type="number" th:field="*{precio}" step="0.01" min="0">
+					</div>
+					<div class="form-row">
+						<label>Stock:</label>
+						<input type="number" th:field="*{stock}" min="0">
+					</div>
+
+					<div class="form-row">
+						<label>Categorias:</label>
+						<select th:field="*{categoria.id}">
+							<option th:each="elem : ${listaCategorias}" th:value="${elem.id}" th:text="${elem.nombre}">
+							</option>
+						</select>
+					</div>
+
+					<div class="form-row">
+						<label>Localidades:</label>
+						<select th:field="*{localidad.id}">
+							<option th:each="elem : ${listaLocalidades}" th:value="${elem.id}" th:text="${elem.nombre}">
+							</option>
+						</select>
+					</div>
+					<input type="submit" value="Guardar">
+				</section>
+			</form>
+		</section>
+
+
+		<section id="seccion tablas">
+			<h1>Productos</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Img</th>
+						<th>Precio</th>
+						<th>Stock</th>
+						<th>Categorias</th>
+						<th>Localidades</th>
+
+						<th>Editar</th>
+						<th>Borrar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${listaProductos}">
+
+						<td th:text="${elem.id}" aria-readonly="false"> 1 </td>
+						<td th:text="${elem.nombre}"> Patata </td>
+						<td th:text="${elem.descripcion}"> descripcion </td>
+						<td>
+
+							<img th:src="@{'imagenes/productos/' + ${elem.img}}" th:alt="${elem.nombre}"
+								class="card-img">
+						</td>
+						<td th:text="${elem.precio} + €"> precio </td>
+						<td th:text="${elem.stock}"> descripcion </td>
+						<td th:text="${elem.categoria.nombre} "> img </td>
+						<td th:text="${elem.localidad.nombre}"> precio </td>
+
+						<td class="btnMB">
+							<a th:href="@{/ModificarProducto(id=${elem.id})}"> 
+								<img src="imagenes/iconos/ico_editar.png">
+							</a>
+						</td>
+						<td class="btnMB">
+							<a th:href="@{/BorrarProducto(id=${elem.id})}"> 
+								<img src="imagenes/iconos/ico_borrar.png"> 
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+		</section>
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

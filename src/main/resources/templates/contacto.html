@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	<link rel="stylesheet" href="styles/plantillas.css">
+	<link rel="stylesheet" href="styles/contacto.css">
+</head>
+
+<body>
+	<div th:include="plantillas.html::cabecera"> </div>
+
+	<!-- Mostrar menú normal solo si no es admin -->
+	<div th:if="${session.rol != 'ADMIN'}" th:include="plantillas.html::menu"></div>
+
+	<!-- Mostrar menú admin solo si es admin -->
+	<div th:if="${session.rol == 'ADMIN'}" th:include="plantillas.html::menuAdmin"></div>
+
+	<main>
+		<section>
+			<section class="contacto_izq">
+				<img th:src="@{/imagenes/imgContacto.jpg}">
+			</section>
+
+			<section class="contacto_der">
+				<form action="" method="POST">
+					<h2>Envíanos un mensaje</h2>
+
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+					<label for="email">Correo electrónico:</label>
+					<input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required>
+
+					<label for="telefono">Telefono:</label>
+					<input type="tel" id="telefono" name="telefono" placeholder="+34 123 45 67 89" required>
+
+
+					<label for="mensaje">Mensaje:</label>
+					<textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+					<button type="submit">Enviar mensaje</button>
+				</form>
+			</section>
+		</section>
+	</main>
+
+	<div th:include="plantillas.html::footer"> </div>
+
+</body>
+
+</html>

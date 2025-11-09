@@ -1,0 +1,82 @@
+<div th:fragment="cabecera">
+	<header>
+		<div id="cabecera_izq">
+			<h1 id="tituloheader"><a th:href="@{/}">Azukre koxkorra</a></h1>
+			<img src="imagenes/logo.png" alt="Logo">
+		</div>
+
+
+		<div id="cabecera_der">
+			<!-- Si no hay usuario logueado -->
+			<a th:if="${session.name == null}" th:href="@{/Login}">Login</a>
+
+			<!-- Si hay usuario logueado -->
+			<span th:if="${session.name != null}" class="usuario-logueado">
+				Bienvenido, <b th:text="${session.name}"></b> |
+				<a class="btn_logout" th:href="@{/Logout}">Cerrar Sesión</a>
+			</span>
+		</div>
+	</header>
+</div>
+
+<!-- Menú normal: solo visible si no es admin -->
+<div th:fragment="menu" th:if="${session.rol != 'ADMIN'}">
+	<nav>
+		<ul>
+			<li><a th:href="@{/Home}">Home</a></li>
+			
+			<li><a th:href="@{/MenuProductos}">Productos</a></li>
+
+			<!-- Solo usuarios logueados -->
+			<li th:if="${session.name != null}">
+				<a th:href="@{/MenuFavoritos}">Favoritos</a>
+			</li>
+
+			<li th:if="${session.name != null}">
+				<a th:href="@{/MenuComentarios}"> Mis Comentarios</a>
+			</li>
+
+			<li><a th:href="@{/MenuContacto}">Contacto</a></li>
+		</ul>
+	</nav>
+</div>
+
+<!-- Menú admin: solo visible para el admin -->
+<div th:fragment="menuAdmin" th:if="${session.rol == 'ADMIN'}">
+	<nav>
+		<ul>
+			<li><a th:href="@{/MenuProductosAdmin}">Productos</a></li>
+			<li><a th:href="@{/MenuCategoriasAdmin}">Categorías</a></li>
+			<li><a th:href="@{/MenuFavoritosAdmin}">Favoritos</a></li>
+			<li><a th:href="@{/MenuLocalidadAdmin}">Localidades</a></li>
+			<li><a th:href="@{/MenuComentariosAdmin}">Comentarios</a></li>
+		</ul>
+	</nav>
+</div>
+
+<div th:fragment="footer">
+	<footer>
+		<div id="footer_izq">
+			<img src="imagenes/logo.png" alt="Logo">
+			<p>
+				En Azukre koxkorra, creemos que cada taza cuenta una historia. Seleccionamos granos de la más alta calidad y
+				los tostamos artesanalmente para ofrecerte el sabor perfecto.
+			</p>
+		</div>
+
+		<div id="footer_cen">
+			<ul>
+				<li><a href="">Política de privacidad</a></li>
+				<li><a href="">Política de Cookie</a></li>
+				<li><a href="">Contacto</a></li>
+			</ul>
+		</div>
+
+		<div id="footer_der">
+			<a href=""><img src="imagenes/redes/facebook.png" alt="Facebook"></a>
+			<a href=""><img src="imagenes/redes/instagram.png" alt="Instagram"></a>
+			<a href=""><img src="imagenes/redes/tik-tok.png" alt="TikTok"></a>
+			<a href=""><img src="imagenes/redes/whatsapp.png" alt="WhatsApp"></a>
+		</div>
+	</footer>
+</div>
